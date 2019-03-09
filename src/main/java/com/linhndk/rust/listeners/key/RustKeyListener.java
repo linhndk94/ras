@@ -5,6 +5,8 @@ import com.linhndk.rust.types.Status;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
+import java.awt.*;
+
 public class RustKeyListener implements NativeKeyListener {
     /*
     /: 53
@@ -12,6 +14,7 @@ public class RustKeyListener implements NativeKeyListener {
     -: 3658
     +: 3662
      */
+
 
     @Override
     public void nativeKeyTyped(NativeKeyEvent nativeKeyEvent) {
@@ -26,6 +29,11 @@ public class RustKeyListener implements NativeKeyListener {
             System.exit(0);
         } else if (nativeKeyEvent.getKeyCode() == 3662) {
             Application.STATUS = Application.STATUS == Status.NOT_ACTIVE ? Status.STAND_BY : Status.NOT_ACTIVE;
+            if (Application.STATUS == Status.STAND_BY) {
+                EventQueue.invokeLater((Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.default"));
+            } else {
+                EventQueue.invokeLater((Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.hand"));
+            }
             Application.Frame.updateStatusLabel();
         }
     }

@@ -28,7 +28,7 @@ public class ProfileFrame extends JFrame {
     private boolean editingProfile;
 
     private List<Profile> profileList;
-    private final String VERSION = "1.0.3-release";
+    private final String VERSION = "1.0.4-release";
     private UserSetting userSetting;
     private int box1Index;
     private int box2Index;
