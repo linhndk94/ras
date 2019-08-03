@@ -48,9 +48,7 @@ public class RustMouseListener implements NativeMouseInputListener {
             if (nativeMouseEvent.getButton() == 1) {
                 if (Application.STATUS == Status.ACTIVE && Application.ActivatedProfile != null && Application.ActivatedProfile.getFireMode() != FireMode.EMPTY) {
                     rustRecoilSupportThread.halt();
-                    if (Application.ActivatedProfile.getFireMode() == FireMode.AUTO) {
-                        GlobalScreen.postNativeEvent(new NativeMouseEvent(NativeMouseEvent.NATIVE_MOUSE_RELEASED, 0, nativeMouseEvent.getX(), nativeMouseEvent.getY(), 0, NativeMouseEvent.BUTTON3));
-                    }
+                    GlobalScreen.postNativeEvent(new NativeMouseEvent(NativeMouseEvent.NATIVE_MOUSE_RELEASED, 0, nativeMouseEvent.getX(), nativeMouseEvent.getY(), 0, NativeMouseEvent.BUTTON3));
                 }
             } else if (nativeMouseEvent.getButton() == 2) {
                 Application.STATUS = Status.STAND_BY;

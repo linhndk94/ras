@@ -18,16 +18,27 @@ import java.io.File;
 import java.io.IOException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Application {
 
     public static Profile ActivatedProfile;
+    public static Profile CachedProfile;
+    public static Profile Numpad1Profile;
+    public static Profile Numpad2Profile;
+    public static Profile Numpad3Profile;
+    public static Profile Numpad4Profile;
+    public static Profile Numpad5Profile;
+    public static Profile Numpad6Profile;
+    public static Profile Numpad7Profile;
+    public static Profile Numpad8Profile;
+    public static Profile Numpad9Profile;
     public static Status STATUS = Status.NOT_ACTIVE;
     public static ProfileFrame Frame;
     public static boolean editingProfile = false;
+    public static boolean isCrouching = false;
+
 
 
     public static void main(String[] args) throws ApplicationDataException, IOException {
@@ -98,26 +109,27 @@ public class Application {
     }
 
     private static UserSetting authenticate() {
-        File file = new File(System.getProperty("user.home") + "/client.properties");
-        if (file.exists()) {
-            try {
-                if (!FileUtils.readFileToString(file, (String) null).equals("0") && (new Date().getTime() - new Date(Long.parseLong(FileUtils.readFileToString(file, (String) null))).getTime()) > 604800000) {
-                    JOptionPane.showMessageDialog(null, "Evaluation is over, ask admin for an everlasting account");
-                    System.exit(0);
-                }
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(null, "Read authenticated file failed, exiting");
-                System.exit(1);
-            }
-        } else {
-            try {
-                file.createNewFile();
-                FileUtils.writeByteArrayToFile(file, String.format("%d", new Date().getTime()).getBytes());
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(null, "Write authenticated file failed, exiting");
-                System.exit(1);
-            }
-        }
+        File file;
+//        file = new File(System.getProperty("user.home") + "/client.properties");
+//        if (file.exists()) {
+//            try {
+//                if (!FileUtils.readFileToString(file, (String) null).equals("0") && (new Date().getTime() - new Date(Long.parseLong(FileUtils.readFileToString(file, (String) null))).getTime()) > 604800000) {
+//                    JOptionPane.showMessageDialog(null, "Evaluation is over, ask admin for an everlasting account");
+//                    System.exit(0);
+//                }
+//            } catch (IOException e) {
+//                JOptionPane.showMessageDialog(null, "Read authenticated file failed, exiting");
+//                System.exit(1);
+//            }
+//        } else {
+//            try {
+//                file.createNewFile();
+//                FileUtils.writeByteArrayToFile(file, String.format("%d", new Date().getTime()).getBytes());
+//            } catch (IOException e) {
+//                JOptionPane.showMessageDialog(null, "Write authenticated file failed, exiting");
+//                System.exit(1);
+//            }
+//        }
         UserSetting userSetting = null;
         try {
             userSetting = Utils.loadUserSettingRaw();

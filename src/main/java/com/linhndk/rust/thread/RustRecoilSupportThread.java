@@ -53,6 +53,10 @@ public class RustRecoilSupportThread extends Thread {
     }
 
     private void smoothMouseMove(int x, int y, long time) {
+        if (!Application.isCrouching && (profile.getFireMode() == FireMode.SEMI || profile.getProfileName().equalsIgnoreCase("M249"))) {
+            x = x * 2;
+            y = y * 2;
+        }
         int step = profile.getSteps();
         int modx = x % step;
         int mody = y % step;

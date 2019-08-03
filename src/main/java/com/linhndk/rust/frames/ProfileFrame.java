@@ -28,7 +28,7 @@ public class ProfileFrame extends JFrame {
     private boolean editingProfile;
 
     private List<Profile> profileList;
-    private final String VERSION = "1.0.4-release";
+    private final String VERSION = "1.0.5-release";
     private UserSetting userSetting;
     private int box1Index;
     private int box2Index;
@@ -71,6 +71,37 @@ public class ProfileFrame extends JFrame {
                     }
                 });
             }
+            userSetting.getProfileList().forEach(profile -> {
+                switch (profile.getProfileName()) {
+                    case "AK-online":
+                        Application.Numpad1Profile = profile;
+                        break;
+                    case "LR300":
+                        Application.Numpad2Profile = profile;
+                        break;
+                    case "SAR":
+                        Application.Numpad3Profile = profile;
+                        break;
+                    case "MP5":
+                        Application.Numpad4Profile = profile;
+                        break;
+                    case "TOMMY":
+                        Application.Numpad5Profile = profile;
+                        break;
+                    case "SMG":
+                        Application.Numpad6Profile = profile;
+                        break;
+                    case "M92":
+                        Application.Numpad7Profile = profile;
+                        break;
+                    case "P250":
+                        Application.Numpad8Profile = profile;
+                        break;
+                    case "NAIL":
+                        Application.Numpad9Profile = profile;
+                        break;
+                }
+            });
         }
     }
 
@@ -344,24 +375,30 @@ public class ProfileFrame extends JFrame {
         updateHotkeyBoxes();
     }
 
-    public void hotkeyActivated(int choice) {
+    public void hotkeyActivated(int choice, Profile cachedProfile) {
         switch (choice) {
             case 1:
+                if (cachedProfile != null) slot1Box.setSelectedItem(cachedProfile);
                 Application.ActivatedProfile = (Profile) slot1Box.getSelectedItem();
                 break;
             case 2:
+                if (cachedProfile != null) slot2Box.setSelectedItem(cachedProfile);
                 Application.ActivatedProfile = (Profile) slot2Box.getSelectedItem();
                 break;
             case 3:
+                if (cachedProfile != null) slot3Box.setSelectedItem(cachedProfile);
                 Application.ActivatedProfile = (Profile) slot3Box.getSelectedItem();
                 break;
             case 4:
+                if (cachedProfile != null) slot4Box.setSelectedItem(cachedProfile);
                 Application.ActivatedProfile = (Profile) slot4Box.getSelectedItem();
                 break;
             case 5:
+                if (cachedProfile != null) slot5Box.setSelectedItem(cachedProfile);
                 Application.ActivatedProfile = (Profile) slot5Box.getSelectedItem();
                 break;
             case 6:
+                if (cachedProfile != null) slot6Box.setSelectedItem(cachedProfile);
                 Application.ActivatedProfile = (Profile) slot6Box.getSelectedItem();
                 break;
             default:
